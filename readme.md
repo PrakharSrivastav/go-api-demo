@@ -46,4 +46,5 @@ __Production__ To run against db boot up the sqlite docker container
 
 
 __Mock__ To run against mocks.
-- Uncomment 
+- Comment [line 25](https://github.com/PrakharSrivastav/go-api-demo/blob/2b9c57767a1c6e806d7936a529d698b3672becda/pkg/app.go#L25) and uncomment [line 27](https://github.com/PrakharSrivastav/go-api-demo/blob/2b9c57767a1c6e806d7936a529d698b3672becda/pkg/app.go#L27) 
+- Run application `go run main.go`
