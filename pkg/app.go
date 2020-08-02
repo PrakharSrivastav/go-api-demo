@@ -7,7 +7,7 @@ import (
 	"github.com/PrakharSrivastav/go-api-demo/pkg/clients/breakingbad"
 	"github.com/PrakharSrivastav/go-api-demo/pkg/store"
 	cr "github.com/PrakharSrivastav/go-api-demo/pkg/store/characters"
-	sr "github.com/PrakharSrivastav/go-api-demo/pkg/store/episodes"
+	er "github.com/PrakharSrivastav/go-api-demo/pkg/store/episodes"
 	qr "github.com/PrakharSrivastav/go-api-demo/pkg/store/quotes"
 	"github.com/go-chi/chi"
 	"github.com/jmoiron/sqlx"
@@ -22,6 +22,12 @@ type App struct {
 
 func New() (*App, error) {
 
+	return application()
+	// or work with mock implementation
+	// return mockApplication()
+}
+
+func application() (*App, error) {
 	db, err := sqlx.Open("sqlite3", "./db/demo.db")
 	if err != nil {
 		return nil, err
@@ -32,16 +38,29 @@ func New() (*App, error) {
 		return nil, err
 	}
 
-	// could be setup in a struct
-	charRepo := cr.NewSqliteRepo(db)
-	episRepo := sr.NewSqliteRepo(db)
-	quotRepo := qr.NewSqliteRepo(db)
-	client := breakingbad.NewHttpClient()
+	cc := cr.NewSqliteRepo(db)
+	qq := qr.NewSqliteRepo(db)
+	ee := er.NewSqliteRepo(db)
+
+	cl := breakingbad.NewHttpClient()
 
 	return &App{
-		character: characters.New(charRepo, client),
-		quote:     quotes.New(quotRepo, client),
-		episode:   episodes.New(episRepo, client),
+		character: characters.New(cc, cl),
+		quote:     quotes.New(qq, cl),
+		episode:   episodes.New(ee, cl),
+	},nil
+}
+
+func mockApplication() (*App, error) {
+	cc := cr.NewMockRepo()
+	qq := qr.NewMockRepo()
+	ee := er.NewMockRepo()
+	cl := breakingbad.NewMockApiClient()
+
+	return &App{
+		character: characters.New(cc, cl),
+		quote:     quotes.New(qq, cl),
+		episode:   episodes.New(ee, cl),
 	}, nil
 }
 
