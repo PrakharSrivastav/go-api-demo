@@ -8,11 +8,11 @@ import (
 // Request is input request structure .
 // It would be in a separate pkg of itself if generated via swagger or graphql schema
 type Request struct {
-	Title      string   `json:"title"`
-	Season     int      `json:"season"`
-	Episode    int      `json:"episode"`
-	AirDate    string   `json:"air_date"`
-	Series     string   `json:"series"`
+	Title   string `json:"title"`
+	Season  int    `json:"season"`
+	Episode int    `json:"episode"`
+	AirDate string `json:"air_date"`
+	Series  string `json:"series"`
 }
 
 

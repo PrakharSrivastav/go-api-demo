@@ -21,26 +21,27 @@ type httpClient struct {
 	baseURL string
 }
 
-func (h httpClient) AllCharacters() ([]Response, error) {
+func (h httpClient) Characters() ([]Character, error) {
 	panic("implement me")
 }
 
-func (h httpClient) OneCharacter(ID int) (Response, error) {
+func (h httpClient) Character(ID int) (Character, error) {
 	panic("implement me")
 }
 
-func (h httpClient) AllEpisodes() ([]string, error) {
+func (h httpClient) Episodes() ([]Episode, error) {
 	panic("implement me")
 }
 
-func (h httpClient) OneEpisode(ID int) (string, error) {
+func (h httpClient) Episode(ID int) (Episode, error) {
 	panic("implement me")
 }
 
-func (h httpClient) AllQuotes() ([]string, error) {
+func (h httpClient) Quotes() ([]Quote, error) {
 	panic("implement me")
 }
 
-func (h httpClient) OneQuote(ID int) (string, error) {
+func (h httpClient) Quote(ID int) (Quote, error) {
 	panic("implement me")
 }
+

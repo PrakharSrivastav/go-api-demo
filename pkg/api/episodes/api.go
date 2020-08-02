@@ -24,10 +24,10 @@ func New(repo episodes.Repository, client breakingbad.ApiClient) *API {
 
 func (a *API) Routes(r chi.Router) {
 	r.Get("/episodes", nil)
-	r.Get("/episodes/:id", nil)
+	r.Get("/episodes/{id}", nil)
 	r.Post("/episodes", nil)
-	r.Put("/episodes/:id", nil)
-	r.Delete("/episodes/:id", nil)
+	r.Put("/episodes/{id}", nil)
+	r.Delete("/episodes/{id}", nil)
 	log.Println("episode routes registered")
 
 }

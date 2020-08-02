@@ -9,8 +9,6 @@ type mock struct {
 	list []Character
 }
 
-
-
 func NewMockRepo() Repository {
 	list := make([]Character, 0, 10)
 	for i := 0; i < 10; i++ {

@@ -24,10 +24,10 @@ func New(repo quotes.Repository, client breakingbad.ApiClient) *API {
 
 func (a *API) Routes(r chi.Router) {
 	r.Get("/quotes", nil)
-	r.Get("/quotes/:id", nil)
+	r.Get("/quotes/{id}", nil)
 	r.Post("/quotes", nil)
-	r.Put("/quotes/:id", nil)
-	r.Delete("/quotes/:id", nil)
+	r.Put("/quotes/{id}", nil)
+	r.Delete("/quotes/{id}", nil)
 	log.Println("quote routes registered")
 }
 

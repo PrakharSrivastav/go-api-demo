@@ -20,8 +20,8 @@ type App struct {
 func New() *App {
 	// could be setup in another function and can even be in a struct
 	charRepo := cr.NewMockRepo()
-	episRepo := sr.Repository(nil)
-	quotRepo := qr.Repository(nil)
+	episRepo := sr.NewMockRepo()
+	quotRepo := qr.NewMockRepo()
 	client := breakingbad.NewMockApiClient()
 	return &App{
 		character: characters.New(charRepo, client),
