@@ -15,39 +15,41 @@ func (m *mock) Characters() ([]Character, error) {
 	return m.chars, nil
 }
 
-func (m *mock) Character(ID int) (Character, error) {
+func (m *mock) Character(ID int) ([]Character, error) {
+	resp := make([]Character,0,1)
 	for i := range m.chars {
 		if m.chars[i].ID == ID {
-			return m.chars[i], nil
+			resp = append(resp,m.chars[i])
+			return resp, nil
 		}
 	}
-	return Character{}, nil
+	return resp, nil
 }
 
 func (m *mock) Episodes() ([]Episode, error) {
 	return m.episodes, nil
 }
 
-func (m *mock) Episode(ID int) (Episode, error) {
+func (m *mock) Episode(ID int) (*Episode, error) {
 	for i := range m.episodes {
 		if m.episodes[i].ID == ID {
-			return m.episodes[i], nil
+			return &m.episodes[i], nil
 		}
 	}
-	return Episode{}, nil
+	return &Episode{}, nil
 }
 
 func (m *mock) Quotes() ([]Quote, error) {
 	return m.quotes, nil
 }
 
-func (m *mock) Quote(ID int) (Quote, error) {
+func (m *mock) Quote(ID int) (*Quote, error) {
 	for i := range m.quotes {
 		if m.quotes[i].ID == ID {
-			return m.quotes[i], nil
+			return &m.quotes[i], nil
 		}
 	}
-	return Quote{}, nil
+	return &Quote{}, nil
 }
 
 func NewMockApiClient() ApiClient {
@@ -58,7 +60,7 @@ func NewMockApiClient() ApiClient {
 			Name:      faker.Name().Name(),
 			Birthday:  faker.Date().Birthday(10, 55).String(),
 			Img:       faker.Internet().Url(),
-			Status:    faker.RandomChoice([]string{"Alive", "Deceseased"}),
+			Status:    faker.RandomChoice([]string{"Alive", "Deceased"}),
 			Nickname:  faker.Name().FirstName(),
 			Portrayed: faker.Name().Name(),
 		})

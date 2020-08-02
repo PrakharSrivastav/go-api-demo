@@ -1,7 +1,7 @@
 package characters
 
 import (
-	"github.com/PrakharSrivastav/go-api-demo/pkg/api"
+	"github.com/PrakharSrivastav/go-api-demo/pkg/api/helpers"
 	"github.com/PrakharSrivastav/go-api-demo/pkg/store/characters"
 )
 
@@ -19,12 +19,12 @@ type Request struct {
 // Validate input request
 func (r *Request) Validate() (field string, err error) {
 	if *r == (Request{}) {
-		return "body", api.ErrorRequestBodyEmpty
+		return "body", helpers.ErrorRequestBodyEmpty
 	}
 
 	// Lets say name is always mandatory
 	if r.Name == "" {
-		return "name", api.ErrorRequestFieldMissing
+		return "name", helpers.ErrorRequestFieldMissing
 	}
 
 	// other validations for birth date format, image URL format etc
@@ -36,7 +36,7 @@ func (r *Request) Validate() (field string, err error) {
 // We can have similar converters for other stuff like external http clients etc
 func (r *Request) ToEntity() (*characters.Character, error) {
 	if *r == (Request{}) {
-		return nil, api.ErrorConvesionToEntity
+		return nil, helpers.ErrorConvesionToEntity
 	}
 
 	return &characters.Character{

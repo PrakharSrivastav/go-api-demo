@@ -25,8 +25,6 @@ func New(repo characters.Repository, client breakingbad.ApiClient) *API {
 func (a *API) Routes(r chi.Router) {
 	r.Get("/characters", a.find)
 	r.Get("/characters/{id}", a.get)
-	r.Post("/characters", a.add)
 	r.Put("/characters/{id}", a.edit)
-	r.Delete("/characters/{id}", a.delete)
 	log.Println("characters routes registered")
 }

@@ -11,23 +11,20 @@ import (
 type API struct {
 	// I prefer to keep these as interfaces
 	// so as to have some room for mocking to test complicated scenarios
-	repoChar  episodes.Repository
+	repoEpisode  episodes.Repository
 	clientApi breakingbad.ApiClient
 }
 
 func New(repo episodes.Repository, client breakingbad.ApiClient) *API {
 	return &API{
-		repoChar:  repo,
+		repoEpisode:  repo,
 		clientApi: client,
 	}
 }
 
 func (a *API) Routes(r chi.Router) {
-	r.Get("/episodes", nil)
-	r.Get("/episodes/{id}", nil)
-	r.Post("/episodes", nil)
-	r.Put("/episodes/{id}", nil)
-	r.Delete("/episodes/{id}", nil)
+	r.Get("/episodes", a.find)
+	r.Get("/episodes/{id}", a.get)
+	r.Put("/episodes/{id}", a.edit)
 	log.Println("episode routes registered")
-
 }

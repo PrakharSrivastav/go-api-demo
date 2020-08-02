@@ -1,8 +1,8 @@
-package characters
+package quotes
 
 import (
 	"encoding/json"
-	"github.com/PrakharSrivastav/go-api-demo/pkg/store/characters"
+	"github.com/PrakharSrivastav/go-api-demo/pkg/store/quotes"
 	"github.com/go-chi/chi"
 	"log"
 	"net/http"
@@ -25,7 +25,7 @@ func (a *API) get(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// if in db, get it from there first
-	/*ch, err := a.repoChar.Get(r.Context(), ID)
+	ch, err := a.repoQuotes.Get(r.Context(), ID)
 	if err != nil {
 		// if db is in error, we can still get it from api
 		// so no need to return http 400
@@ -42,27 +42,24 @@ func (a *API) get(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		_, _ = w.Write(b)
 		return
-	}*/
+	}
 
 	// else get it from api
-	char, err := a.clientApi.Character(ID)
+	q, err := a.clientApi.Quote(ID)
 	if err != nil {
 		log.Println(err)
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
-	entity := &characters.Character{
-		ID:        char[0].ID,
-		Name:      char[0].Name,
-		Birthday:  char[0].Birthday,
-		Img:       char[0].Img,
-		Status:    char[0].Status,
-		Nickname:  char[0].Name,
-		Portrayed: char[0].Portrayed,
+	entity := &quotes.Quote{
+		ID:     q.ID,
+		Quote:  q.Quote,
+		Author: q.Author,
+		Series: q.Series,
 	}
 
 	// save to db before returning
-	if err = a.repoChar.Insert(r.Context(), entity); err != nil {
+	if err = a.repoQuotes.Insert(r.Context(), entity); err != nil {
 		log.Println(err)
 	}
 

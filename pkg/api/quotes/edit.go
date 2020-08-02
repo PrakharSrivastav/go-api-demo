@@ -1,4 +1,4 @@
-package characters
+package quotes
 
 import (
 	"encoding/json"
@@ -47,12 +47,11 @@ func (a *API) edit(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err = a.repoChar.Update(r.Context(), ID, entity); err != nil{
+	if err = a.repoQuotes.Update(r.Context(), ID, entity); err != nil{
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 
 	w.WriteHeader(http.StatusOK)
 	return
-
 }

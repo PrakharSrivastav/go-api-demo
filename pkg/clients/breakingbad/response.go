@@ -1,13 +1,14 @@
 package breakingbad
 
 type Character struct {
-	ID        int    `json:"id"`
+	ID        int    `json:"char_id"`
 	Name      string `json:"name"`
 	Birthday  string `json:"birthday"`
 	Img       string `json:"img"`
 	Status    string `json:"status"`
 	Nickname  string `json:"nickname"`
 	Portrayed string `json:"portrayed"`
+	Category  string `json:"category,omitempty"`
 }
 
 type Episode struct {

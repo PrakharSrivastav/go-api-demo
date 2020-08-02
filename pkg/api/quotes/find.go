@@ -1,14 +1,12 @@
-package characters
+package quotes
 
 import (
 	"encoding/json"
-	"log"
 	"net/http"
 )
 
 func (a *API) find(w http.ResponseWriter, _ *http.Request) {
-	log.Println("yo")
-	c, err := a.clientApi.Characters()
+	c, err := a.clientApi.Quotes()
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
@@ -20,7 +18,7 @@ func (a *API) find(w http.ResponseWriter, _ *http.Request) {
 		return
 	}
 
-	w.WriteHeader(http.StatusOK)
 	_, _ = w.Write(b)
+	w.WriteHeader(http.StatusOK)
 	return
 }

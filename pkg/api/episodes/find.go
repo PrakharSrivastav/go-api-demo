@@ -1,14 +1,12 @@
-package characters
+package episodes
 
 import (
 	"encoding/json"
-	"log"
 	"net/http"
 )
 
-func (a *API) find(w http.ResponseWriter, _ *http.Request) {
-	log.Println("yo")
-	c, err := a.clientApi.Characters()
+func (a *API) find(w http.ResponseWriter, request *http.Request) {
+	c, err := a.clientApi.Episodes()
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
@@ -20,7 +18,7 @@ func (a *API) find(w http.ResponseWriter, _ *http.Request) {
 		return
 	}
 
-	w.WriteHeader(http.StatusOK)
 	_, _ = w.Write(b)
+	w.WriteHeader(http.StatusOK)
 	return
 }

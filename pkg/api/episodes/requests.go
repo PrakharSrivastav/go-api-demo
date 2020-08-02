@@ -1,7 +1,7 @@
 package episodes
 
 import (
-	"github.com/PrakharSrivastav/go-api-demo/pkg/api"
+	"github.com/PrakharSrivastav/go-api-demo/pkg/api/helpers"
 	"github.com/PrakharSrivastav/go-api-demo/pkg/store/episodes"
 )
 
@@ -19,12 +19,12 @@ type Request struct {
 // Validate input request
 func (r *Request) Validate() (field string, err error) {
 	if *r == (Request{}) {
-		return "body", api.ErrorRequestBodyEmpty
+		return "body", helpers.ErrorRequestBodyEmpty
 	}
 
 	// Lets say title is always mandatory
 	if r.Title == "" {
-		return "title", api.ErrorRequestFieldMissing
+		return "title", helpers.ErrorRequestFieldMissing
 	}
 
 	return "", nil
@@ -34,7 +34,7 @@ func (r *Request) Validate() (field string, err error) {
 // We can have similar converters for other stuff like external http clients etc
 func (r *Request) ToEntity() (*episodes.Episode, error) {
 	if *r == (Request{}) {
-		return nil, api.ErrorConvesionToEntity
+		return nil, helpers.ErrorConvesionToEntity
 	}
 
 	return &episodes.Episode{
