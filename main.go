@@ -7,8 +7,11 @@ import (
 )
 
 func main() {
-	app := pkg.New()
+	app, err := pkg.New()
+	if err != nil {
+		log.Fatal(err)
+	}
 	r := app.Routes()
-	err := http.ListenAndServe(":3000", r)
+	err = http.ListenAndServe(":3000", r)
 	log.Fatal(err)
 }

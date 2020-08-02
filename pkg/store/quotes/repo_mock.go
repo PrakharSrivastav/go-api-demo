@@ -41,10 +41,6 @@ func (m mock) Update(ctx context.Context, ID int, ch *Quote) error {
 	return nil
 }
 
-func (m mock) Delete(ctx context.Context, ID int) error {
-	return nil
-}
-
 func NewMockRepo() Repository{
 	quotes := make([]Quote, 0, 10)
 	for i := 0; i < 10; i++ {

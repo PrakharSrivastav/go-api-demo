@@ -57,6 +57,3 @@ func (m mock) Update(ctx context.Context, ID int, ch *Character) error {
 	return nil
 }
 
-func (m mock) Delete(ctx context.Context, ID int) error {
-	return nil
-}

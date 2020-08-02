@@ -2,12 +2,10 @@ package characters
 
 import (
 	"encoding/json"
-	"log"
 	"net/http"
 )
 
 func (a *API) find(w http.ResponseWriter, _ *http.Request) {
-	log.Println("yo")
 	c, err := a.clientApi.Characters()
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)

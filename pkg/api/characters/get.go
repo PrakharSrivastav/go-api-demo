@@ -25,11 +25,11 @@ func (a *API) get(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// if in db, get it from there first
-	/*ch, err := a.repoChar.Get(r.Context(), ID)
+	ch, err := a.repoChar.Get(r.Context(), ID)
 	if err != nil {
 		// if db is in error, we can still get it from api
 		// so no need to return http 400
-		log.Println(err)
+		log.Printf("select error :: err = %v\n", err)
 	}
 
 	if ch != nil {
@@ -37,17 +37,18 @@ func (a *API) get(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Println(err)
 			w.WriteHeader(http.StatusInternalServerError)
+			return
 		}
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		_, _ = w.Write(b)
 		return
-	}*/
+	}
 
 	// else get it from api
 	char, err := a.clientApi.Character(ID)
 	if err != nil {
-		log.Println(err)
+		log.Printf("api error :: err = %v \n",err)
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
@@ -63,7 +64,7 @@ func (a *API) get(w http.ResponseWriter, r *http.Request) {
 
 	// save to db before returning
 	if err = a.repoChar.Insert(r.Context(), entity); err != nil {
-		log.Println(err)
+		log.Printf("insert error. err :: %v\n", err)
 	}
 
 	b, err := json.Marshal(entity)
@@ -72,8 +73,7 @@ func (a *API) get(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, _ = w.Write(b)
 	w.WriteHeader(http.StatusOK)
+	_, _ = w.Write(b)
 	return
-
 }

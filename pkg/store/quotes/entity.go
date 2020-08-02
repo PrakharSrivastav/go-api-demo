@@ -1,8 +1,8 @@
 package quotes
 
 type Quote struct {
-	ID     int    `json:"id"`
-	Quote  string `json:"quote"`
-	Author string `json:"author"`
-	Series string `json:"series"`
+	ID     int    `json:"id" db:"id"`
+	Quote  string `json:"quote" db:"quote"`
+	Author string `json:"author" db:"author"`
+	Series string `json:"series" db:"series"`
 }

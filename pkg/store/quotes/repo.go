@@ -7,5 +7,4 @@ type Repository interface {
 	Find(ctx context.Context, s Search ) ([]Quote, error)
 	Insert(ctx context.Context, ch *Quote) error
 	Update(ctx context.Context, ID int, ch *Quote) error
-	Delete(ctx context.Context, ID int) error
 }

@@ -42,10 +42,6 @@ func (m mock) Update(ctx context.Context, ID int, ch *Episode) error {
 	return nil
 }
 
-func (m mock) Delete(ctx context.Context, ID int) error {
-	return nil
-}
-
 func NewMockRepo() Repository {
 	episodes := make([]Episode, 0, 10)
 	for i := 0; i < 10; i++ {

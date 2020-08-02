@@ -6,11 +6,11 @@ const (
 )
 
 type Character struct {
-	ID        int    `json:"id"`
-	Name      string `json:"name"`
-	Birthday  string `json:"birthday"`
-	Img       string `json:"img"`
-	Status    string `json:"status"`
-	Nickname  string `json:"nickname"`
-	Portrayed string `json:"portrayed"`
+	ID        int    `json:"id" db:"id"`
+	Name      string `json:"name" db:"name"`
+	Birthday  string `json:"birthday" db:"birthday"`
+	Img       string `json:"img" db:"img"`
+	Status    string `json:"status" db:"status"`
+	Nickname  string `json:"nickname" db:"nickname"`
+	Portrayed string `json:"portrayed" db:"portrayed"`
 }
